@@ -1,0 +1,270 @@
+
+:root {
+    --hover-main-color: #DADEE0;
+    --hover-tweet-action-color: #37A6F2;
+    --hover-tweet-action-bgcolor: rgba(55, 166, 242, 0.2);;
+    --hover-like-tweet-action-bgcolor: rgba(251, 26, 132, 0.2);
+    --hover-retweet-tweet-action-bgcolor: rgba(0, 255, 0, 0.2);
+    --hover-tweet-action-retweet-color: green;
+    --hover-tweet-action-like-color: red;
+    --border-main-color: #EFF3F4;
+    --profile-actions-border-color: #cfd9de;
+}
+
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#container {
+    align-items: center;
+    border: 1px solid var(--border-main-color);
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+}
+
+header {
+    align-items: center;
+    display: flex;
+    gap: 3rem;
+    padding-bottom: 0.3rem;
+}
+
+header nav {
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    height: 2rem;
+    justify-content: center;
+    width: 2rem;
+}
+
+header nav:hover {
+    background-color: var(--hover-main-color);
+}
+
+#profile-cover-img {
+    background-color: gray; /* TO-DO: replace with img */
+    height: 150px; /* TO-DO: switch to auto */
+    width: 100%;
+}
+
+#profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#profile-pic-and-options {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+#container>*:not(#profile-cover-img, #profile-nav, #tweets) {
+    width: 95%;
+}
+
+#profile-pic {
+    background-color: white; /* TO-DO: replace with img */
+    border-radius: 50%;
+    height: 6rem;
+    margin-top: -3rem;
+    width: 6rem;
+}
+
+#profile-pic img {
+    height: auto;
+    width: 98%;
+}
+
+#profile-options {
+    display: flex;
+    gap: 0.5rem;
+}
+
+#profile-follow {
+    display: flex;
+    gap: 2rem;
+}
+
+#profile-nav {
+    border-bottom: 1px solid var(--border-main-color);
+    margin-top: 2svh;
+    width: 100%;
+}
+
+#profile-nav ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#profile-nav ul li {
+    cursor: pointer;
+    flex: 1;
+    line-height: 3rem;
+    text-align: center;
+}
+
+#profile-nav ul li:hover {
+    background-color: var(--hover-main-color);
+}
+
+#tweets {
+    width: 100%;
+}
+
+.tweet {
+    cursor: pointer;
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem 2.5%;
+}
+
+.tweet:hover {
+    background-color: var(--hover-main-color);
+}
+
+.tweeter-profile-pic {
+    height: 50px;
+    width: 50px;
+}
+
+.tweeter-profile-pic img {
+    background-color: gray;
+    border-radius: 50%;
+    height: auto;
+    width: 100%;
+}
+
+.tweet-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+}
+
+.tweet-meta {
+    display: flex;
+}
+
+.tweet-meta span {
+    padding: 0 0.5rem;
+} 
+
+.tweet-details-and-actions {
+    width: 88%;
+}
+
+.tweet-actions {
+    display: flex;
+    gap: 1rem;
+    /* justify-content: space-between; */
+    /* line-height: 2rem; */
+    padding: 0.5rem 0;
+}
+
+.tweet-action {
+    align-items: center;
+    display: flex;
+}
+
+.svg-container {
+    align-items: center;
+    border-radius: 50%;
+    display: flex;
+    height: 2rem;
+    justify-content: center;
+    width: 2rem;
+}
+
+
+.tweet-action:hover {
+    color: var(--hover-tweet-action-color);
+    fill: var(--hover-tweet-action-color);
+}
+
+.tweet-action-retweet:hover {
+    color: var(--hover-tweet-action-retweet-color);
+    fill: var(--hover-tweet-action-retweet-color);
+}
+
+.tweet-action-like:hover {
+    color: var(--hover-tweet-action-like-color);
+    fill: var(--hover-tweet-action-like-color);
+}
+
+.tweet-action:hover .svg-container {
+    background-color: var(--hover-tweet-action-bgcolor);
+}
+
+.tweet-action:hover .like-svg-container {
+    background-color: var(--hover-like-tweet-action-bgcolor);
+}
+
+#more-icon, #mail-message-icon, .tweet-info-more-icon, .tweet-action svg, .back-svg {
+    width: 20px;
+}
+
+
+#profile-options>*:not(:last-child){
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    width: 2rem;
+}
+
+#profile-options>*:not(:last-child):hover {
+    background-color: var(--hover-main-color);
+}
+
+#profile-options>*:last-child{
+    background-color: black;
+    border-radius: 1.5rem;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    text-align: center;
+}
+
+.tweet-info-more-icon {
+    align-items: center;
+    border-radius: 50%;
+    display: flex;
+    height: 2rem;
+    justify-content: center;
+    width: 2rem;
+}
+
+.tweet-info-more-icon:hover {
+    background-color: var(--hover-tweet-action-bgcolor);
+}
+
+.profile-name {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.tweet-tweeter-name {
+    font-weight: bold;
+}
+
+
+@media (max-width: 404px) {
+    .tweet-actions {
+        gap: 0.7rem;
+    }
+
+    .svg-container {
+        height: 20px;
+        width: 20px;
+    }
+}
