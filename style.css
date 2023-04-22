@@ -2,7 +2,7 @@
 :root {
     --hover-main-color: #DADEE0;
     --hover-tweet-action-color: #37A6F2;
-    --hover-tweet-action-bgcolor: rgba(55, 166, 242, 0.2);;
+    --hover-tweet-action-bgcolor: rgba(55, 166, 242, 0.2);
     --hover-like-tweet-action-bgcolor: rgba(251, 26, 132, 0.2);
     --hover-retweet-tweet-action-bgcolor: rgba(0, 255, 0, 0.2);
     --hover-tweet-action-retweet-color: green;
@@ -10,11 +10,13 @@
     --border-main-color: #EFF3F4;
     --profile-actions-border-color: #cfd9de;
     --gray-font-color: #7B8892;
+    --blue-button-background: #8ECDF7;
 }
 
 
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
 }
 
 #container {
@@ -22,6 +24,7 @@ body {
     border: 1px solid var(--border-main-color);
     display: flex;
     flex-direction: column;
+    margin: auto;
     max-width: 600px;
 }
 
@@ -102,10 +105,15 @@ header nav:hover {
     gap: 0.5rem;
 }
 
+#profile-options>:last-child:hover {
+    background-color: #000000c2;
+}
+
 #profile-follow {
     display: flex;
     gap: 2rem;
 }
+
 
 #profile-follow>div {
     cursor: pointer;
@@ -212,6 +220,7 @@ header nav:hover {
 }
 
 .tweet {
+    border-bottom: 1px solid var(--border-main-color);
     cursor: pointer;
     display: flex;
     gap: 0.5rem;
@@ -220,6 +229,14 @@ header nav:hover {
 
 .tweet:hover {
     background-color: var(--hover-main-color);
+}
+
+.opened-tweet {
+    cursor: default;
+}
+
+.opened-tweet:hover {
+    background-color: inherit;
 }
 
 .tweeter-profile-pic {
@@ -359,6 +376,18 @@ header nav:hover {
     fill: var(--gray-font-color);
 }
 
+.timestamp {
+    cursor: pointer;
+}
+
+.timestamp:hover, .tweet-counter:hover {
+    text-decoration: underline;
+}
+
+.tweet-counter {
+    cursor: pointer;
+}
+
 @media (max-width: 490px) {
     .tweet-actions {
         gap: 1.5rem;
@@ -367,6 +396,10 @@ header nav:hover {
     .svg-container {
         height: 20px;
         width: 20px;
+    }
+
+    form input {
+        font-size: 0.6rem!important;
     }
 }
 
