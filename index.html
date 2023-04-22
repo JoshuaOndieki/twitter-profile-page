@@ -15,7 +15,7 @@
             </nav>
             <div>
                 <div class="profile-name">{profile name}</div>
-                <div>{# tweets}</div>
+                <div class="gray-font-color" id="tweets-count">{# tweets}</div>
             </div>
         </header>
         <div id="profile-cover-img"> <img src="" alt="profile cover image"> </div>
@@ -31,22 +31,33 @@
 
             <div>
                 <div class="profile-name">{profile name}</div>
-                <div>{profile @username}</div>
+                <div id="profile-username" class="gray-font-color">{profile @username}</div>
             </div>
-            <div>{profile description}
-                Quis cillum non officia in eu sunt fugiat et. Aute dolore magna sunt mollit elit culpa nulla. Culpa est culpa deserunt officia nisi incididunt ullamco ad quis quis.
+            <div id="profile-description">
+                Quis cillum non officia in eu sunt @username fugiat et. Aute dolore magna sunt mollit elit culpa nulla. Culpa est culpa deserunt officia #hashtag nisi incididunt ullamco ad quis quis.
             </div>
-            <div id="profile-meta">
-                {profile meta data}
+            <div id="profile-meta" class="gray-font-color">
+                <!-- {profile meta data} -->
+                <div id="profile-meta-joined" class="profile-meta-data">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="calender-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path class="calendar-svg-path" d="M7 4V3h2v1h6V3h2v1h1.5C19.89 4 21 5.12 21 6.5v12c0 1.38-1.11 2.5-2.5 2.5h-13C4.12 21 3 19.88 3 18.5v-12C3 5.12 4.12 4 5.5 4H7zm0 2H5.5c-.27 0-.5.22-.5.5v12c0 .28.23.5.5.5h13c.28 0 .5-.22.5-.5v-12c0-.28-.22-.5-.5-.5H17v1h-2V6H9v1H7V6zm0 6h2v-2H7v2zm0 4h2v-2H7v2zm4-4h2v-2h-2v2zm0 4h2v-2h-2v2zm4-4h2v-2h-2v2z"></path></g></svg>
+                    <div>Joined January, 1969</div>
+                </div>
             </div>
             <div id="profile-follow">
-                <div>{# following}</div>
-                <div>{# followers}</div>
+                <div class="gray-font-color"><span id="profile-following"></span> Following</div>
+                <div class="gray-font-color" > <span id="profile-followers"></span> Followers</div>
             </div>
-            <div>{followed by ..}</div>
+            <div class="gray-font-color" id="followed-by">
+                <div id="followed-by-profile-pics">
+                    <div><img src="assets/thejitu.jpg" alt=""></div>
+                    <div><img src="assets/thejitu.jpg" alt=""></div>
+                    <div><img src="assets/thejitu.jpg" alt=""></div>
+                </div>
+                <div id="followed-by-text">Followed by Joshua Ondieki ✨ , #THE-Jitu🚀, and 1 million others you follow</div>
+            </div>
         </div>
 
-        <nav id="profile-nav">
+        <nav id="profile-nav" class="gray-font-color">
             <ul>
                 <li>Tweets</li>
                 <li>Replies</li>
@@ -116,5 +127,8 @@
             </div>
         </div>
     </div>
+
+    <script src="src/index.js"></script>
+    <script src="src/formatter.js"></script>
 </body>
 </html>

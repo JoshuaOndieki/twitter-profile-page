@@ -9,6 +9,7 @@
     --hover-tweet-action-like-color: red;
     --border-main-color: #EFF3F4;
     --profile-actions-border-color: #cfd9de;
+    --gray-font-color: #7B8892;
 }
 
 
@@ -26,9 +27,16 @@ body {
 
 header {
     align-items: center;
+    background-color: white;
+    border-bottom: 1px solid var(--border-main-color);
     display: flex;
-    gap: 3rem;
+    gap: 2rem;
+    opacity: 0.98;
     padding-bottom: 0.3rem;
+    padding-left: 0.3rem;
+    position: sticky;
+    top: 0;
+    width: 100%
 }
 
 header nav {
@@ -46,8 +54,13 @@ header nav:hover {
 }
 
 #profile-cover-img {
-    background-color: gray; /* TO-DO: replace with img */
-    height: 150px; /* TO-DO: switch to auto */
+    background-color: gray;
+    height: 200px;
+    width: 100%;
+}
+
+#profile-cover-img img {
+    height: 200px;
     width: 100%;
 }
 
@@ -63,21 +76,25 @@ header nav:hover {
     justify-content: space-between;
 }
 
-#container>*:not(#profile-cover-img, #profile-nav, #tweets) {
+#container>*:not(#profile-cover-img, #profile-nav, #tweets, header) {
     width: 95%;
 }
 
 #profile-pic {
-    background-color: white; /* TO-DO: replace with img */
+    align-items: center;
+    background-color: white;
     border-radius: 50%;
-    height: 6rem;
-    margin-top: -3rem;
-    width: 6rem;
+    display: flex;
+    height: 150px;
+    justify-content: center;
+    margin-top: -75px;
+    width: 150px;
 }
 
 #profile-pic img {
-    height: auto;
-    width: 98%;
+    border-radius: 50%;
+    height: 140px;
+    width: 140px;
 }
 
 #profile-options {
@@ -88,6 +105,74 @@ header nav:hover {
 #profile-follow {
     display: flex;
     gap: 2rem;
+}
+
+#profile-follow>div {
+    cursor: pointer;
+}
+
+#profile-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+#profile-meta a {
+    text-decoration: none;
+}
+
+#profile-meta a:hover {
+    text-decoration: underline;
+}
+
+.profile-meta-data {
+    align-items: center;
+    display: flex;
+    gap: 0.3rem;
+}
+
+#profile-following, #profile-followers {
+    color: black;
+    font-weight: 500;
+}
+
+#followed-by {
+    cursor: pointer;
+    display: flex;
+    gap: 2rem;
+}
+
+#followed-by:hover #followed-by-text{
+    text-decoration: underline;
+}
+
+#followed-by-profile-pics{
+    display: flex;
+    width: 50px;
+}
+
+#followed-by-profile-pics>div {
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 50%;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
+}
+
+#followed-by-profile-pics>div>img {
+    width: 100%;
+}
+
+
+#profile-follow>div:hover {
+    text-decoration: underline;
+    text-decoration-color: black;
+}
+
+#profile-meta svg {
+    width: 1rem;
 }
 
 #profile-nav {
@@ -257,6 +342,10 @@ header nav:hover {
     font-weight: bold;
 }
 
+.gray-font-color {
+    color: var(--gray-font-color);
+    fill: var(--gray-font-color);
+}
 
 @media (max-width: 404px) {
     .tweet-actions {
