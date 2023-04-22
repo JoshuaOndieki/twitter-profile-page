@@ -28,16 +28,18 @@ class App{
     }
 
     async getUser(userId) {
-        let userResponse = await fetch(this.usersUrl + '/' + userId)
-        let userData = await userResponse.json()
-        return userData
+        return await this.getData(this.usersUrl + '/' + userId)
     }
 
     async getPostsByUserId(userId) {{
-        let postsResponse = await fetch(this.postsUrl + '?userId=' + userId)
-        let postsData = await postsResponse.json()
-        return postsData
+        return await this.getData(this.postsUrl + '?userId=' + userId)
     }}
+
+    async getData(url) {
+        let response = await fetch(url)
+        let data = await response.json()
+        return data
+    }
 
     async getCommentsByPost(postId) {
         let commentsReponse = await fetch(this.commentsUrl + `/?postId=${postId}`)
@@ -68,7 +70,7 @@ class App{
 
         // For DEMO purposes, use the first part of the zipcode for followers, and the other part for following.
         let splitZipCode = userData.address.zipcode.split('-')
-        if (splitZipCode.length == 2) {
+        if (splitZipCode.length === 2) {
             let followers = +splitZipCode[1]
             elements.profileFollowingElement.innerHTML = followers.toLocaleString()
         } else {
@@ -116,9 +118,7 @@ class App{
                 tweetElement.id = post.userId + '-' + post.id
             } else {
                 tweetContentElement.innerHTML = post.body
-                tweetElement.id = post.postId + '-' + post.id
-            }
-
+                tweetElement.id = post.postId + '-' + post.id}
             // user email to generate name and username for DEMO purposes
             let tweeterName;
             let username;
@@ -127,37 +127,24 @@ class App{
                 username = post.email.split('@')[1].split('.')[0]
             } else {
                 tweeterName = data.userData.name
-                username = data.userData.username
-            }
-
+                username = data.userData.username}
             tweetElement.getElementsByClassName('tweet-tweeter-name')[0].innerHTML = tweeterName
             let tweeterUsernameElement = tweetElement.getElementsByClassName('tweet-tweeter-username')[0]
             tweeterUsernameElement.innerHTML = '@' + username
             tweeterUsernameElement.classList.add('gray-font-color')
-
             let tweetTimestampElement = tweetElement.getElementsByClassName('tweet-timestamp')[0]
             tweetTimestampElement.innerHTML = 'Apr 21'
             tweetTimestampElement.classList.add('gray-font-color')
-
             let tweeterProfilePicElement = tweetElement.getElementsByClassName('tweeter-profile-pic')[0].getElementsByTagName('img')[0]
-
             if (data.type == 'post') {
                 tweeterProfilePicElement.setAttribute('src', 'assets/baby-yoda-grogu.gif')
-
                 tweetElement.addEventListener('click', async () => {
                     let postElement = tweetElement.cloneNode(true)
-                    console.log(postElement);
                     await this.renderComments(post.id, postElement)
-                    window.scrollTo(0,0)
-                })
-            } else {
-                // tweeterProfilePicElement.setAttribute('src', '')
-            }
-
-
+                    window.scrollTo(0,0)})
+                }
             data.tweetsElement.appendChild(tweetElement)
-        })
-    }
+        })}
 
     async renderPosts(userId) {
         let posts = await this.getPostsByUserId(userId)
@@ -169,6 +156,7 @@ class App{
     }
 
     async renderComments(postId, postElement) {
+        // TO-DO: REFACTOR CODE!
         // edit header, remove profile cover, info, and nav, render only current post and then comments
         let comments = await this.getCommentsByPost(postId)
         let headerElement = document.getElementsByTagName('header')[0].cloneNode(true)
@@ -183,13 +171,10 @@ class App{
         profilePicElement.parentNode.removeChild(profilePicElement)
         tweetInfoElement.parentNode.removeChild(tweetInfoElement)
 
-
-
         let tweeterInfoElement = document.createElement('div')
         tweeterInfoElement.style.cssText = `display: flex; justify-content: center; align-items: center; gap: 1rem`
         tweetInfoElement.style.flex = 1
         tweeterInfoElement.append(profilePicElement, tweetInfoElement)
-
 
         postElement.getElementsByClassName('tweet')[0].insertBefore(tweeterInfoElement, postElement.getElementsByClassName('tweet')[0].firstElementChild)
 
@@ -246,13 +231,11 @@ class App{
 
         // reply tweet form
         let replyTweetElement = document.createElement('div')
-
         replyTweetElement.style.cssText = `width: 100%; height: 60px; display: flex; align-items: center; gap: 0.5rem`
 
         let loggedUserPicElement = document.createElement('div')
         loggedUserPicElement.classList.add('logged-user-profile-pic', 'tweeter-profile-pic')
         loggedUserPicElement.innerHTML = `<img style="height: 50px" src="assets/twitter-logo-upside-down.jpg" alt="user pic">`
-
         replyTweetElement.appendChild(loggedUserPicElement)
 
         let replyTweetFormElement = document.createElement('form')
