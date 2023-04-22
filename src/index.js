@@ -3,6 +3,15 @@ class App{
     constructor() {
         this.usersUrl = 'https://jsonplaceholder.typicode.com/users'
         this.postsUrl = 'https://jsonplaceholder.typicode.com/posts'
+
+        // when constructing, get the tweet container and reuse it as a template
+        this.tweetsContainerTemplate = document.getElementById('tweet-template').cloneNode(true)
+        // tweetsContainerTemplate = tweetsContainerTemplate.cloneNode(true)
+    }
+
+    renderApp(options) {
+        this.renderUser(options.userId)
+        this.renderPosts(options.userId)
     }
 
     async getUser(userId) {
@@ -11,11 +20,16 @@ class App{
         return userData
     }
 
+    async getPostsByUserId(userId) {{
+        let postsResponse = await fetch(this.postsUrl + '?userId=' + userId)
+        let postsData = await postsResponse.json()
+        return postsData
+    }}
+
     async renderUser(userId) {
         let userData = await this.getUser(userId)
-        console.log(userData)
+        this.userData = userData
         let elements = this.getProfileElements()
-        console.log(elements);
 
         elements.profileNameElements.map(element => {
             element.innerHTML = userData.name
@@ -74,6 +88,32 @@ class App{
 
     }
 
+    async renderPosts(userId) {
+        let posts = await this.getPostsByUserId(userId)
+        let userData = await this.getUser(userId)
+        let tweetsElement = document.getElementById('tweets')
+        tweetsElement.innerHTML = ""
+        posts.map(post => {
+            let tweetElement = this.tweetsContainerTemplate.cloneNode(true);
+            let tweetContentElement = tweetElement.getElementsByClassName('tweet-content')[0]
+            tweetContentElement.innerHTML = `<span>${post.title}</span> ${post.body}`
+            tweetElement.id = post.userId + '-' + post.id
+            tweetElement.getElementsByClassName('tweet-tweeter-name')[0].innerHTML = userData.name
+            let tweeterUsernameElement = tweetElement.getElementsByClassName('tweet-tweeter-username')[0]
+            tweeterUsernameElement.innerHTML = '@' + userData.username
+            tweeterUsernameElement.classList.add('gray-font-color')
+
+            let tweetTimestampElement = tweetElement.getElementsByClassName('tweet-timestamp')[0]
+            tweetTimestampElement.innerHTML = 'Apr 21'
+            tweetTimestampElement.classList.add('gray-font-color')
+
+            let tweeterProfilePicElement = tweetElement.getElementsByClassName('tweeter-profile-pic')[0].getElementsByTagName('img')[0]
+            tweeterProfilePicElement.setAttribute('src', 'assets/baby-yoda-grogu.gif')
+
+            tweetsElement.appendChild(tweetElement)
+        })
+    }
+
     getProfileElements() {
         let profileNameElements = Array.from(document.getElementsByClassName('profile-name'))
         let profileUsernameElement = document.getElementById('profile-username')
@@ -121,7 +161,6 @@ class App{
         let data = await response.text()
         const parser = new DOMParser();
         const svg = parser.parseFromString(data, 'image/svg+xml').querySelector('svg');
-        console.log(svg)
         return svg;
     }
 }
@@ -129,4 +168,4 @@ class App{
 
 const myApp = new App()
 
-myApp.renderUser(7)
+myApp.renderApp({userId:7})

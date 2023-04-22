@@ -59,14 +59,14 @@
 
         <nav id="profile-nav" class="gray-font-color">
             <ul>
-                <li>Tweets</li>
+                <li class="selected-nav">Tweets</li>
                 <li>Replies</li>
                 <li>Media</li>
                 <li>Likes</li>
             </ul>
         </nav>
         <div id="tweets">
-            <div class="tweet-container">
+            <div class="tweet-container" id="tweet-template">
                 <div></div> <!-- optional retweeted/liked -->
                 <div class="tweet">
                     <div class="tweeter-profile-pic">  <img src="" alt="tweeter pic"> </div>
@@ -75,9 +75,9 @@
                             <div class="tweet-info">
                                 <div class="tweet-meta">
                                     <div class="tweet-tweeter-name">{Tweeter Name}</div>
-                                    <div>{@username}</div>
+                                    <div class="tweet-tweeter-username">{@username}</div>
                                     <span>·</span>
-                                    <div>{simplified timestamp}</div>
+                                    <div class="tweet-timestamp">{simplified timestamp}</div>
                                 </div>
                                 <div class="tweet-info-more-icon"><img src="assets/more.svg" alt="more"></div>
                             </div>
